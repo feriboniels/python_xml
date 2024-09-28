@@ -1,0 +1,92 @@
+import xml.etree.cElementTree as ET 
+import os
+
+#Set the path
+pathname = '/workspaces/codespaces-jupyter/proyecto/modificado.xliff'
+tree=ET.ElementTree(file=pathname)
+root=tree.getroot()
+#f = open('/workspaces/codespaces-jupyter/proyecto/diccionario.txt', "a")
+
+x=0;
+
+with open ('/workspaces/codespaces-jupyter/proyecto/diccionario.txt', "a")as f:
+
+    for item in root.findall("./file/body/group/group/"):
+        print(item.attrib ,file=f)
+        for item2 in item.findall("./group/"):
+                print(item2.attrib,file=f)
+                for item1 in item2.findall("./trans-unit/"):
+                    print(item1.tag,file=f)
+                    print(item1.text, file=f)
+                    for item3 in item2.findall("./trans-unit/"):
+                        print(item3.tag,file=f)
+                        print(item3.text, file=f)  
+"""
+    for item in root.findall("./file/body/group/group/"):
+        print(item.attrib ,file=f)
+        for item0 in root.findall("./file/body/group/group/trans-unit/source"):
+            print(item0.text, file=f)
+        for item1 in root.findall("./file/body/group/group/trans-unit/target"):
+            print(item1.text, file=f)
+ 
+
+
+
+for item in root.findall("./header"):
+    print(item.attrib)
+    print(item.tag)
+    print(item.text)
+
+
+
+#print(root.tag)  #{urn:oasis:names:tc:xliff:document:1.2}xliff
+#print(len(root)) #639
+
+
+print(root[1][0].text)
+
+#print(len(root[0]))
+#for target in root.iter('id'):
+#    print(id.attrib)
+
+
+
+
+
+
+for target in root.iter('id'):
+    print(id.attrib)
+
+
+
+for child in root:
+    print(child.attrib)
+
+
+
+
+i=0
+for trans in root:
+   for header in trans:
+        for body in header:
+            for target in body:
+                print(target.content)
+#Create a workbook 
+#book = xlwt.Workbook(encoding="utf-8")
+#sheet1 = book.add_sheet("Sheet 1") 
+
+#fetch each element within the source tag and save it in source file
+
+i=0
+for trans in root:
+   for header in trans:
+        for body in header:
+            for source in body:
+                if(source.tag=='source'):
+                    #value=source.text
+                    #sheet1.write(i, 0, value) 
+                    i=i+1
+print(source)
+#book.save('sourcefile.xls')
+
+""" 
