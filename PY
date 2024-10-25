@@ -1,2 +1,13 @@
-f = open("demofile.txt", "r")
-print(f.read())
+import re from sys import argv script, filename =argv
+ 
+txt= open(filename) rec=open('records.txt','+w') arcopen= txt.read() array2= arcopen.replace('=','  ').replace('COALESCE',' ').replace('ON',' ').replace('AND',' ').replace('CAST',' ')  arreglo= re.sub('[^a-zA-Z0-9_ \n\\.]', '',array2).split()  x=0 for x in arreglo:     if "tedw." in x:         if x.count('.')>1:             rec.write(x +"\n")  txt.close() rec.close()
+ 
+ 
+import re from sys import argv script, filename =argv
+ 
+txt= open(filename) #rec=open('records.txt','+w') arcopen= txt.read()
+ 
+array3=arcopen.replace('COALESCE',' ').replace('CAST',' ') arreglox= re.sub('[^a-zA-Z0-9_= \n\\.]', '',array3).split("\n")  z=0 for z in arreglox:     if ("LEFT JOIN")in z:         zz=z.replace('LEFT',' ').replace('JOIN',' ')         rr=zz.split()         if(len(rr))==2:             if("tedw")not in (rr[1]):                 print(rr)
+ 
+ 
+txt.close() #rec.close()
